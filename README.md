@@ -80,15 +80,15 @@ npm 업데이트는 다음과 같이 할 수 있습니다.
 ```
 #### 2. mac 64bit
 ```
-	$ npm run build:mac32
+	$ npm run build:mac64
 ```
 #### 3. win 32bit
 ```
-	$ npm run build:mac32
+	$ npm run build:win32
 ```
 #### 4. win 64bit
 ```
-	$ npm run build:mac32
+	$ npm run build:win64
 ```
 #### 5. 빌드를 하는 컴퓨터의 운영체제 
 ```
