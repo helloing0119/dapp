@@ -1,0 +1,57 @@
+html, body {
+    height: 100%;
+}
+
+#root {
+    height: 100%;
+}
+
+.App {
+    height: 100%;
+}
+
+#sidebar-holder {
+    width: 3em;
+    height: 100%;
+    z-index: 1;
+    position: fixed;
+    padding: 0px;
+    margin: 0px 0px 0px 0px;
+    font-size: 1.25em;
+    top: 0px;
+    left: 0px;
+}
+
+#content-holder {
+    width: calc(100% - 3em);
+    min-height: 100%;
+    z-index: 0;
+    position: absolute;
+    padding: 0px;
+    margin-left: 3em;
+    top: 0px;
+    left: 0px;
+}
+
+@media screen and (min-width: 720px) {
+    #sidebar-holder {
+        width: 280px;
+        height: 100%;
+        z-index: 1;
+        position: fixed;
+        padding: 0px;
+        margin: 0px 0px 0px 0px;
+        top: 0px;
+        left: 0px;
+    }
+    #content-holder {
+        width: calc(100% - 280px);
+        min-height: 100%;
+        z-index: 0;
+        position: absolute;
+        padding: 0px;
+        margin-left: 280px;
+        top: 0px;
+        left: 0px;
+    }
+}

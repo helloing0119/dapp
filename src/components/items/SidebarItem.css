@@ -1,0 +1,9 @@
+.sidebar-content-text {
+    display: none;
+}
+
+@media screen and (min-width: 720px) {
+    .sidebar-content-text {
+        display: initial;
+    }
+}

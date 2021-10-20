@@ -1,0 +1,20 @@
+$theme-colors: (
+    "primary": #7c94ed,
+    "secondary": #d4b992,
+    "success": #93e37c,
+    "danger": #cb3e6d,
+    "warning": #d79745,
+    "info": #95bedc,
+    "light": #f6f7ee,
+    "dark": #271d37
+);
+
+@import "~bootstrap/scss/bootstrap";
+
+hr {
+    border-color: $light
+}
+
+.nav-link {
+    color: $light
+}
