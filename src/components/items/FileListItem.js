@@ -35,15 +35,8 @@ export default class FileListItem extends Component {
   render() {
     const permission = this.props.permission;
     return <ListGroup.Item
-      className="bg-white text-dark"
       action={this.props.permission === PermissionConst.DENIED ? undefined : true}
-      variant={
-        permission === PermissionConst.ALLOWED ? "primary" :
-          (permission === PermissionConst.OWNED ? "primary" :
-            (permission === PermissionConst.DENIED ? "warning" :
-              undefined)
-          )
-      }
+      variant={this.state.selected ? "danger" : undefined}
       onClick={this.handleSelectFile}
     >
       {this.props.commitFlag ?
@@ -57,25 +50,20 @@ export default class FileListItem extends Component {
         <Table>
           <tbody>
             <tr>
-              <td style={{ width: "6em" }}>{CommitText.Korean["owner"]}</td>
-              <td>{this.props.owner}</td>
+              <td style={{ width: "6em" }}>{CommitText.Korean["name"]}</td>
+              <td>{this.props.name}</td>
             </tr>
             <tr>
-              <td style={{ width: "6em" }}>{CommitText.Korean["rev"]}</td>
-              <td>{this.props.rev}</td>
+              <td style={{ width: "6em" }}>{CommitText.Korean["owner"]}</td>
+              <td>{this.props.owner}</td>
             </tr>
             <tr>
               <td style={{ width: "6em" }}>{CommitText.Korean["uploaded"]}</td>
               <td>{this.props.uploaded}</td>
             </tr>
             <tr>
-              <td style={{ width: "6em" }}>{CommitText.Korean["msg"]}</td>
-              <td>
-                {this.props.msg ?
-                  this.props.msg :
-                  CommitText.Korean["defaultMsg"]
-                }
-              </td>
+              <td style={{ width: "6em" }}>{CommitText.Korean["size"]}</td>
+              <td>{this.props.size}</td>
             </tr>
           </tbody>
         </Table>

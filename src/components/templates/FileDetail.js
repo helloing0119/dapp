@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
 import { Card, Table, Button } from 'react-bootstrap';
 import { TemplateText, CommitText } from '../utils/Languages';
-import { PermissionConst } from '../utils/Consts';
+import { IconConst, PermissionConst } from '../utils/Consts';
+import { PageNameText } from '../utils/Languages';
 import PropTypes from 'prop-types';
 
 import './FileDetail.scss';
+import BootstrapIcon from '../items/BootstrapIcon';
 
 const propTypes = {
   objectId: PropTypes.number,
@@ -52,7 +54,8 @@ export default class FileDetail extends Component {
     >
       <Card>
         <Card.Header as="h5">
-          {this.props.name}
+          <BootstrapIcon content={IconConst.FILE_DETAIL}/>
+          {PageNameText.English.FILE_DETAIL_PAGE}
         </Card.Header>
         <Card.Body>
           <Card.Title
@@ -67,52 +70,43 @@ export default class FileDetail extends Component {
                 {
                   this.props.type ?
                     <tr>
-                      <td style={{ width: "6em" }}>{CommitText.Korean["type"]}</td>
-                      <td>{this.props.type}</td>
+                      <td style={{ width: "6em" }}>{CommitText.Korean["name"]}:</td>
+                      <td>{this.props.name}</td>
                     </tr>
                     : null
                 }
                 {
                   this.props.size ?
                     <tr>
-                      <td style={{ width: "6em" }}>{CommitText.Korean["size"]}</td>
-                      <td>{this.props.size}</td>
+                      <td style={{ width: "6em" }}>{CommitText.Korean["owner"]}:</td>
+                      <td>{this.props.owner}</td>
                     </tr>
                     : null
                 }
                 {
                   this.props.ownwer ?
                     <tr>
-                      <td style={{ width: "6em" }}>{CommitText.Korean["owner"]}</td>
-                      <td>{this.props.owner}</td>
+                      <td style={{ width: "6em" }}>{CommitText.Korean["type"]}:</td>
+                      <td>{this.props.type}</td>
                     </tr>
                     : null
                 }
                 {
                   this.props.rev ?
                     <tr>
-                      <td style={{ width: "6em" }}>{CommitText.Korean["rev"]}</td>
-                      <td>{this.props.rev}</td>
+                      <td style={{ width: "6em" }}>{CommitText.Korean["size"]}:</td>
+                      <td>{this.props.size}</td>
                     </tr>
                     : null
                 }
                 {
                   this.props.uploaded ?
                     <tr>
-                      <td style={{ width: "6em" }}>{CommitText.Korean["uploaded"]}</td>
+                      <td style={{ width: "6em" }}>{CommitText.Korean["uploaded"]}:</td>
                       <td>{this.props.uploaded}</td>
                     </tr>
                     : null
                 }
-                <tr>
-                  <td style={{ width: "6em" }}>{CommitText.Korean["msg"]}</td>
-                  <td>
-                    {this.props.msg ?
-                      this.props.msg :
-                      CommitText.Korean["defaultMsg"]
-                    }
-                  </td>
-                </tr>
               </tbody>
             </Table>
           </Card.Text>

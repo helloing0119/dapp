@@ -1,15 +1,18 @@
 export const PageConst = {
     FILE_DETAIL_PAGE: "FILE_DETAIL_PAGE",
     FILE_LIST_PAGE: "FILE_LIST_PAGE",
+    FILE_SEARCH_PAGE: "FILE_SEARCH_PAGE",
     FILE_UPLOAD_PAGE: "FILE_UPLOAD_PAGE",
     INTRO_PAGE: "INTRO_PAGE"
 };
 
 export const IconConst = {
     LOGO: "bi-mylogo",
-    HOME: "bi-house-fill",
+    HOME: "bi-house-door",
+    FILE_DETAIL: "bi-file-earmark",
     FILE_LIST: "bi-list-ul",
     FILE_UPLOAD: "bi-file-earmark-arrow-up-fill",
+    OTHER_FILES: "bi-binoculars",
     SEARCH: "bi-search",
 
     EXT_TEXT: "bi-file-earmark-text-fill",

@@ -1,15 +1,17 @@
 export const PageNameText = {
     Korean: {
         "FILE_DETAIL_PAGE": "파일 정보",
-        "FILE_LIST_PAGE": "파일 목록",
-        "FILE_UPLOAD_PAGE": "파일 업로드",
+        "FILE_LIST_PAGE": "내 파일들",
+        "FILE_SEARCH_PAGE": "찾아보기",
+        "FILE_UPLOAD_PAGE": "업로드",
         "INTRO_PAGE": "시작 페이지"
     },
 
     English: {
-        "FILE_DETAIL_PAGE": "File info.",
-        "FILE_LIST_PAGE": "File list",
-        "FILE_UPLOAD_PAGE": "Upload file",
+        "FILE_DETAIL_PAGE": "File Details",
+        "FILE_LIST_PAGE": "My Storage",
+        "FILE_SEARCH_PAGE": "Other Files",
+        "FILE_UPLOAD_PAGE": "Upload File",
         "INTRO_PAGE": "Home"
     }
 };

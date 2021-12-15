@@ -31,15 +31,17 @@ export default class Searchbar extends Component {
   }
 
   render() {
-    return <InputGroup
-      style={{ width: "100%", height: "100%" }}
-    >
-      <FormControl
-        placeholder={TemplateText.Korean["search"]}
-        aria-label="Search"
-        aria-describedby="search-addon"
-        onChange={this.handleInputChange}
-      />
+    return <div className="Search-Holder">
+      <InputGroup
+        style={{ width: "100%", height: "100%" }}
+      >
+        <FormControl
+          placeholder={TemplateText.Korean["search"]}
+          aria-label="Search"
+          aria-describedby="search-addon"
+          onChange={this.handleInputChange}
+        />
+      </InputGroup>
       <Button
         className="bg-primary outline-light"
         id="button-search-addon"
@@ -51,7 +53,7 @@ export default class Searchbar extends Component {
           content={IconConst.SEARCH}
         />
       </Button>
-    </InputGroup>
+    </div>
   }
 };
 

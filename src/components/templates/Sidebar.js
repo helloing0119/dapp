@@ -16,15 +16,15 @@ export default class Sidebar extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      selected: PageConst.INTRO_PAGE,
+      selected: PageConst.FILE_LIST_PAGE,
       items: [
-        PageConst.INTRO_PAGE,
         PageConst.FILE_LIST_PAGE,
+        PageConst.FILE_SEARCH_PAGE,
         PageConst.FILE_UPLOAD_PAGE
       ],
       icons: [
         IconConst.HOME,
-        IconConst.FILE_LIST,
+        IconConst.OTHER_FILES,
         IconConst.FILE_UPLOAD
       ]
     };
