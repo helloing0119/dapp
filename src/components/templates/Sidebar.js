@@ -3,11 +3,13 @@ import PropTypes from 'prop-types';
 import { Nav } from 'react-bootstrap';
 import SidebarItem from '../items/SidebarItem';
 import SidebarHeader from '../items/SidebarHeader';
-import { PageConst, IconConst } from '../utils/Consts';
-import { PageNameText } from '../utils/Languages';
+import { PageConst, IconConst } from '../../utils/Consts';
+import { PageNameText } from '../../utils/Languages';
 
 const propTypes = {
-  onPageChange: PropTypes.func.isRequired
+  selected: PropTypes.string.isRequired,
+  onPageChange: PropTypes.func.isRequired,
+  initialized: PropTypes.boolean.isRequired
 };
 
 const defaultProps = {};
@@ -16,16 +18,22 @@ export default class Sidebar extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      selected: PageConst.FILE_LIST_PAGE,
-      items: [
+      selected: this.props.selected,
+      items: this.props.initialized?[
         PageConst.FILE_LIST_PAGE,
         PageConst.FILE_SEARCH_PAGE,
-        PageConst.FILE_UPLOAD_PAGE
+        PageConst.FILE_UPLOAD_PAGE,
+        PageConst.CONFIG_PAGE
+      ]:[
+        PageConst.CONFIG_PAGE
       ],
-      icons: [
+      icons: this.props.initialized?[
         IconConst.HOME,
         IconConst.OTHER_FILES,
-        IconConst.FILE_UPLOAD
+        IconConst.FILE_UPLOAD,
+        IconConst.CONFIG
+      ]:[
+        IconConst.CONFIG
       ]
     };
 
@@ -47,7 +55,7 @@ export default class Sidebar extends Component {
     return <>
       <Nav
         className="flex-column mb-auto"
-        defaultActiveKey={this.state.items[0]}
+        defaultActiveKey={this.state.selected}
         variant="pills"
         onSelect={(eventKey) => this.handleChange(eventKey)}
       >

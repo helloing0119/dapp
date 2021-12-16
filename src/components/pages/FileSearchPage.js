@@ -3,9 +3,9 @@ import { Mockupfiles } from '../utils/Mockup';
 import PropTypes from 'prop-types';
 import { PermissionConst } from '../../tils/Consts';
 import FileList from '../templates/FileList';
-import Searchbar from '../templates/Searchbar';
 
 import './FileListPage.scss';
+
 import EosHandler from '../utils/handlers/EosHandler';
 import HubHandler from '../utils/handlers/HubHandler';
 import ResolveHandler from '../utils/handlers/ResolveHandler';
@@ -43,7 +43,7 @@ const propTypes = {
 
 const defaultProps = {};
 
-export default class FileListPage extends Component {
+export default class FileSearchPage extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -52,20 +52,30 @@ export default class FileListPage extends Component {
     };
 
     this.handleSelectFile = this.handleSelectFile.bind(this);
+    this.handleSearch = this.handleSearch.bind(this);
   }
 
   handleSelectFile(target) {
     this.props.onSelectFile(target);
   }
 
+  handleSearch(query) {
+    //set searching as true to prevent double searching
+    this.setState({ searching: true });
+    //TODO : request to IH server
+    //TODO : parse response
+    //TODO : this.setState({files : parsed})
+    this.setState({ searching: false })
+  }
+
   componentDidMount() {
-    if (this.props.data) {
-      this.setState({ files: this.props.data })
+    if (this.props.files) {
+      this.setState({ files: this.props.files })
     }
     else {
       //TODO : Get File list from IH
       //TODO : setState -> files : [fileList]
-      this.setState({ files: []});
+      this.setState({ files: Mockupfiles });
     }
   }
 
@@ -81,5 +91,5 @@ export default class FileListPage extends Component {
   }
 };
 
-FileListPage.propTypes = propTypes;
-FileListPage.defaultProps = defaultProps;
+FileSearchPage.propTypes = propTypes;
+FileSearchPage.defaultProps = defaultProps;

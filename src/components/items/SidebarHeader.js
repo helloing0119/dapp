@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { IconConst } from '../utils/Consts';
+import { IconConst } from '../../utils/Consts';
 import BootstrapIcon from './BootstrapIcon';
 
 import './SidebarHeader.scss';

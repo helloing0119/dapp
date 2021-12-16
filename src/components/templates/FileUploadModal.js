@@ -1,14 +1,15 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import FileUploader from '../templates/FileUploader';
-import FileDetail from '../templates/FileDetail';
+import FileUploader from '../items/FileUploader';
+import FileDetail from './FileDetail';
 
 const propTypes = {
+  onSubmit: PropTypes.func.isRequired
 };
 
 const defaultProps = {};
 
-export default class FileUploadPage extends Component {
+export default class FileUploadModal extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -19,6 +20,10 @@ export default class FileUploadPage extends Component {
 
   handleFileUpload(file) {
     this.setState({ file: file });
+  }
+
+  handleSubmit() {
+    this.props.onSubmit();
   }
 
   render() {
@@ -35,6 +40,7 @@ export default class FileUploadPage extends Component {
               name={this.state.file.name}
               type={this.state.file.type}
               size={(this.state.file.size / 1024) + "kb"}
+              onSubmit={this.handleSubmit}
             />
           </div>
           : null
@@ -43,5 +49,5 @@ export default class FileUploadPage extends Component {
   }
 };
 
-FileUploadPage.propTypes = propTypes;
-FileUploadPage.defaultProps = defaultProps;
+FileUploadModal.propTypes = propTypes;
+FileUploadModal.defaultProps = defaultProps;

@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
 import { Card, Table, Button } from 'react-bootstrap';
-import { TemplateText, CommitText } from '../utils/Languages';
-import { IconConst, PermissionConst } from '../utils/Consts';
-import { PageNameText } from '../utils/Languages';
+import { TemplateText, CommitText } from '../../utils/Languages';
+import { IconConst, PermissionConst } from '../../utils/Consts';
+import { PageNameText } from '../../utils/Languages';
 import PropTypes from 'prop-types';
 
-import './FileDetail.scss';
 import BootstrapIcon from '../items/BootstrapIcon';
 
 const propTypes = {
@@ -37,10 +36,6 @@ export default class FileDetail extends Component {
   }
 
   handleDownload() {
-
-  }
-
-  handlePermissionRequest() {
 
   }
 
@@ -110,18 +105,6 @@ export default class FileDetail extends Component {
               </tbody>
             </Table>
           </Card.Text>
-          {
-            this.props.onPermissionRequest ?
-              <Button
-                className="text-light"
-                style={{ "margin-right": "1em" }}
-                variant="primary"
-                onClick={this.handlePermissionRequest}
-              >
-                {TemplateText.Korean["askPermission"]}
-              </Button>
-              : null
-          }
           {
             this.props.onDownload ?
               <Button

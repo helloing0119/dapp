@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Button, InputGroup, FormControl } from 'react-bootstrap';
-import { IconConst } from '../utils/Consts';
-import { TemplateText } from '../utils/Languages';
+import { IconConst } from '../../utils/Consts';
+import { TemplateText } from '../../utils/Languages';
 import BootstrapIcon from '../items/BootstrapIcon';
 
 const propTypes = {

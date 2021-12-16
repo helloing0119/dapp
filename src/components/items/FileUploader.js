@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Dropzone from 'dropzone';
-import '../utils/dropzone/dropzone.css';
+import '../../utils/dropzone/dropzone.css';
 import 'dropzone/dist/dropzone.css';
 
 const propTypes = {

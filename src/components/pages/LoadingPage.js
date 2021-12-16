@@ -6,16 +6,16 @@ const propTypes = {
 
 const defaultProps = {};
 
+
 export default class LoadingPage extends Component {
   constructor(props) {
     super(props);
-    this.state = {};
   }
 
-  render() {
-    return <div><h1>E</h1></div>;
+  render () {
+    return <h1>Loading...</h1>
   }
-};
+}
 
 LoadingPage.propTypes = propTypes;
 LoadingPage.defaultProps = defaultProps;

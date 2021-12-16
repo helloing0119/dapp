@@ -3,7 +3,8 @@ export const PageConst = {
     FILE_LIST_PAGE: "FILE_LIST_PAGE",
     FILE_SEARCH_PAGE: "FILE_SEARCH_PAGE",
     FILE_UPLOAD_PAGE: "FILE_UPLOAD_PAGE",
-    INTRO_PAGE: "INTRO_PAGE"
+    CONFIG_PAGE: "CONFIG_PAGE",
+    LOADING_PAGE: "LOADING_PAGE"
 };
 
 export const IconConst = {
@@ -14,6 +15,7 @@ export const IconConst = {
     FILE_UPLOAD: "bi-file-earmark-arrow-up-fill",
     OTHER_FILES: "bi-binoculars",
     SEARCH: "bi-search",
+    CONFIG: "bi-gear",
 
     EXT_TEXT: "bi-file-earmark-text-fill",
     EXT_PDF: "bi-file-earmark-pdf-fill",
@@ -29,6 +31,7 @@ export const IconConst = {
 export const PermissionConst = {
     OWNED: "owned",
     ALLOWED: "allowed",
+    READONLY: "readonly",
     DENIED: "denied",
     DEFAULT: "default"
 }

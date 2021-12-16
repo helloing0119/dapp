@@ -16,16 +16,52 @@ export const PageNameText = {
     }
 };
 
+export const FormText = {
+  English: {
+    "eosUrl": "EOSIO Server URL",
+    "didServerUrl": "DID Resolver URL",
+    "hubUrl": "IdentityHub URL",
+    "hubDid": "IdentityHub DID",
+    "myDid": "Your DID",
+    "account": "Account",
+    "publicKey": "PublicKey",
+    "privateKey": "PrivateKey",
+    "publicKeyJwk": "PublickKeyJWK",
+    "crv": "crv",
+    "kty": "kty",
+    "x": "x",
+    "y": "y",
+    "kid": "kid",
+    "submit": "Submit"
+  }
+}
+
 export const TemplateText = {
+  Korean: {
+      "search": "검색",
+      "download": "다운로드",
+      "upload": "업로드",
+      "commit": "커밋",
+      "askPermission": "권한 요청"
+  },
+  English: {
+      "search": "Search"
+  }
+}
+
+export const PermissionText = {
     Korean: {
-        "search": "검색",
-        "download": "다운로드",
-        "upload": "업로드",
-        "commit": "커밋",
-        "askPermission": "권한 요청"
+        "read": "읽기 권한",
+        "update": "수정 권한",
+        "approved": "승인됨",
+        "unapproved": "권한 없음",
     },
     English: {
-        "search": "Search"
+      "read": "Read",
+      "update": "Update",
+      "approved": "Approved",
+      "unapproved": "Unapproved"
+
     }
 }
 

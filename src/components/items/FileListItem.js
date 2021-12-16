@@ -5,6 +5,7 @@ import { CommitText } from '../utils/Languages';
 import PropTypes from 'prop-types';
 
 const propTypes = {
+  selected: PropTypes.Boolean.isRequired,
   objectId: PropTypes.number.isRequired,
   name: PropTypes.string.isRequired,
   type: PropTypes.string.isRequired,
@@ -39,30 +40,13 @@ export default class FileListItem extends Component {
       variant={this.state.selected ? "danger" : undefined}
       onClick={this.handleSelectFile}
     >
-      {this.props.commitFlag ?
-        null :
-        <div className="FileList-item-header d-flex w-100 align-items-center justify-content-between">
-          <strong className="mb-1" style={{ fontSize: "1.5em" }}>{this.props.name}</strong>
-          <small className="mb-1">{CommitText.Korean["size"] + " : " + this.props.size}</small>
-        </div>
-      }
       <div className="FileList-item-content">
         <Table>
           <tbody>
             <tr>
-              <td style={{ width: "6em" }}>{CommitText.Korean["name"]}</td>
-              <td>{this.props.name}</td>
-            </tr>
-            <tr>
-              <td style={{ width: "6em" }}>{CommitText.Korean["owner"]}</td>
+              <td colSpan="3">{this.props.name}</td>
               <td>{this.props.owner}</td>
-            </tr>
-            <tr>
-              <td style={{ width: "6em" }}>{CommitText.Korean["uploaded"]}</td>
-              <td>{this.props.uploaded}</td>
-            </tr>
-            <tr>
-              <td style={{ width: "6em" }}>{CommitText.Korean["size"]}</td>
+              <td colSpan="2">{this.props.uploaded}</td>
               <td>{this.props.size}</td>
             </tr>
           </tbody>

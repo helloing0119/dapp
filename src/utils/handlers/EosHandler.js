@@ -2,8 +2,9 @@ import { Api, JsonRPC } from 'eosjs';
 import { JsSignatureProvider } from 'eosjs/dist/eosjs-jssig';
 import { PrivateKey, PublicKey, Signature, Aes, key_utils, config } from 'eosjs-ecc';
 export default class EosHandler {
-  constructor(publicKeys, privateKeys, url, account) {
-    this.account = account ? account : null;
+  constructor(accounts, publicKeys, privateKeys, url) {
+    this.account = accounts[0];
+    this.accounts = accounts;
     this.publicKeys = publicKeys;
     this.privateKey = privateKeys;
 
@@ -17,7 +18,13 @@ export default class EosHandler {
   }
 
   addKey(account, publicKey, privateKey) {
-    //Todo : 
+    const oldAccounts = this.accounts;
+    const oldPublicKeys = this.publicKeys;
+    const oldPrivateKeys = this.privateKeys;
+
+    this.accounts = [].push(oldAccounts, [account]);
+    this.publicKeys = [].push(oldPublicKeys, [publicKey]);
+    this.privateKey = [].push(oldPrivateKeys, [privateKey]);
   }
 
   reloadApi() {
@@ -73,40 +80,6 @@ export default class EosHandler {
       }]
     });
 
-    /*
-    * allocate system resource
-    */
-    await this.api.transact({
-      actions: [{
-        account: 'eosio',
-        name: 'buyrambytes',
-        authorization: [{
-          actor: this.account,
-          permission: 'active',
-        }],
-        data: {
-          payer: this.account,
-          receiver: newAccount,
-          bytes: 512,
-        },
-      },
-      {
-        account: 'eosio',
-        name: 'delegatebw',
-        authorization: [{
-          actor: this.account,
-          permission: 'active',
-        }],
-        data: {
-          from: this.account,
-          receiver: newAccount,
-          stake_net_quantity: '1.0000 SYS',
-          stake_cpu_quantity: '1.0000 SYS',
-          transfer: false,
-        }
-      }
-      ]
-    });
 
     this.addKey(newAccount, pubkey, prkey);
     this.reloadApi();
@@ -118,38 +91,48 @@ export default class EosHandler {
     };
   }
 
-  async setPassword(fileAccount, password) {
-    const linkauth_input = {
-      account: fileAccount,
-      code: fileAccount,
-      type: 'get_password',
-      requirement: 'accessible',
-    };
-
-    await api.transact({
-      actions: [{
-        account: 'eosio',
-        name: 'linkauth',
-        authorization: [{
-          actor: fileAccount,
-          permission: 'active',
-        }],
-        data: linkauth_input,
-      }]
-    }, {
-      blocksBehind: 3,
-      expireSeconds: 30,
-    });
+  async getFileInfo(objectId, rev, owner) {
+    const timeElapsed = Date.now();
+    const now = new Date(timeElapsed).toISOString();
 
     const result = await this.api.transact({
       actions: [{
         account: 'eosio',
-        name: 'set_password',
+        name: 'get_fileinfo',
+        authorization: [{
+          actor: owner,
+          permission: `active`
+        }],
+        data: {
+          rev: rev,
+          time: now
+        }
+      }]
+    });
+
+    if (result.ok) {
+      return {
+        url: result.url,
+        password: result.password
+      };
+    }
+    else {
+      return null;
+    }
+  }
+
+  async setFileInfo(fileAccount, rev, url, password) {
+    const result = await this.api.transact({
+      actions: [{
+        account: 'eosio',
+        name: 'set_fileinfo',
         authorization: [{
           actor: fileAccount,
           permission: 'active'
         }],
         data: {
+          rev: rev,
+          url: url,
           password: password
         }
       }]
@@ -163,11 +146,11 @@ export default class EosHandler {
     }
   }
 
-  async sharePassword(fileAccount, target) {
+  async giveReadPermission(fileAccount, target) {
     const linkauth_input = {
       account: fileAccount,
       code: target,
-      type: 'get_password',
+      type: 'get_fileinfo',
       requirement: 'accessible',
     };
 
@@ -189,11 +172,37 @@ export default class EosHandler {
     return result;
   }
 
-  async disallowPassword(fileAccount, target) {
+  async giveUpdagePermission(fileAccount, target) {
+    const linkauth_input = {
+      account: fileAccount,
+      code: target,
+      type: 'set_fileinfo',
+      requirement: 'accessible',
+    };
+
+    const result = await api.transact({
+      actions: [{
+        account: 'eosio',
+        name: 'linkauth',
+        authorization: [{
+          actor: fileAccount,
+          permission: 'active',
+        }],
+        data: linkauth_input,
+      }]
+    }, {
+      blocksBehind: 3,
+      expireSeconds: 30,
+    });
+
+    return result;
+  }
+
+  async disgardReadPermission(fileAccount, target) {
     const unlinkauth_input = {
       account: fileAccount,
       code: target,
-      type: 'get_password',
+      type: 'get_fileinfo',
     };
 
     const result = await api.transact({
@@ -214,30 +223,28 @@ export default class EosHandler {
     return result;
   }
 
-  async getPassword(objectId, owner) {
-    const timeElapsed = Date.now();
-    const now = new Date(timeElapsed).toISOString();
+  async disgardUpdagePermission(fileAccount, target) {
+    const unlinkauth_input = {
+      account: fileAccount,
+      code: target,
+      type: 'set_fileinfo',
+    };
 
-    const result = await this.api.transact({
+    const result = await api.transact({
       actions: [{
         account: 'eosio',
-        name: 'get_password',
+        name: 'unlinkauth',
         authorization: [{
-          actor: owner,
-          permission: `fileid${objectId}`
+          actor: this.account,
+          permission: 'active',
         }],
-        data: {
-          objectId: objectId,
-          time: now
-        }
+        data: unlinkauth_input,
       }]
+    }, {
+      blocksBehind: 3,
+      expireSeconds: 30,
     });
 
-    if (result.ok) {
-      return result.password;
-    }
-    else {
-      return null;
-    }
+    return result;
   }
 }
