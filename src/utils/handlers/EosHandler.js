@@ -50,7 +50,7 @@ export default class EosHandler {
     await this.api.transact({
       actions: [{
         account: 'eosio',
-        name: 'newaccount',
+        name: newAccount,
         authorization: [{
           actor: this.account,
           permission: 'active',
